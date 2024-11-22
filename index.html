@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Neural Network Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            font-size: 150%;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            display: none; /* Initially hidden */
+            opacity: 0; /* Initially invisible for fade-in effect */
+            transition: opacity 0.5s ease-in; /* Fade-in effect */
+        }
+        h1, h3, h4 {
+            color: #333;
+            margin-top: 20px;
+        }
+        p, li {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .image-placeholder, .interactive-placeholder, .continue-button, .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section {
+            text-align: left;
+        }
+        .image-placeholder img, .interactive-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section {
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .vocab-section {
+            background-color: #f0f8ff;
+        }
+        .vocab-section h3 {
+            color: #1e90ff;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .vocab-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .vocab-term {
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        .why-it-matters {
+            background-color: #ffe6f0;
+        }
+        .why-it-matters h3 {
+            color: #d81b60;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .why-it-matters h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .test-your-knowledge {
+            background-color: #e6ffe6; /* Light green background */
+        }
+        .test-your-knowledge h3 {
+            color: #28a745; /* Dark green heading */
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .test-your-knowledge h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .test-your-knowledge p {
+            margin-bottom: 15px;
+        }
+        .check-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #28a745; /* Green background */
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .faq-section {
+            background-color: #fffbea; /* Light yellow background */
+        }
+        .faq-section h3 {
+            color: #ffcc00; /* Bright yellow heading */
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .faq-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <section id="section1">
+        <h1>The Neural Network Connection</h1>
+        <p>Let's build the simplest possible neural network - just one neuron with a linear activation function. Think of it as a linear regression model wearing a fancy costume.</p>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Diagram shows a single neuron with one input, one weight connection, and a bias">
+        </div>
+        <div class="continue-button" onclick="showNextSection(2)">Continue</div>
+    </section>
+
+    <section id="section2">
+        <p>Our neural network takes an input (like house size), multiplies it by a 'weight' (w), adds a 'bias' (b), and produces an output (predicted price). Sound familiar? Let's write it out:</p>
+        <p>\[ \text{Neural Network Output} = wx + b \]</p>
+        <div class="continue-button" onclick="showNextSection(3)">Continue</div>
+    </section>
+
+    <section id="section3">
+        <div class="test-your-knowledge">
+            <h3>Test Your Knowledge</h3>
+            <h4>Look at this equation and compare it to the linear regression equation (y = mx + b). What do you notice?</h4>
+            <p>
+                <label><input type="radio" name="equation-answer" value="option1"> They're exactly the same equation with different letters</label><br>
+                <label><input type="radio" name="equation-answer" value="option2"> They're completely different equations</label><br>
+                <label><input type="radio" name="equation-answer" value="option3"> The neural network equation is more complex</label>
+            </p>
+            <button class="check-button" onclick="checkAnswer()">Check</button>
+            <div id="result" style="display: none; margin-top: 10px; font-weight: bold;"></div>
+            <div id="explanation" style="display: none; margin-top: 10px;"></div>
+        </div>
+    </section>
+
+    <script>
+        // Show the first section initially
+        document.getElementById("section1").style.display = "block";
+        document.getElementById("section1").style.opacity = "1"; // Make the first section visible
+
+        // Function to show the next section with fade-in and then scroll to it
+        function showNextSection(nextSectionId) {
+            const currentButton = event.target;
+            const nextSection = document.getElementById("section" + nextSectionId);
+            
+            // Hide the clicked button
+            currentButton.style.display = "none";
+            
+            // Show the next section with a fade-in effect
+            nextSection.style.display = "block";
+            setTimeout(() => {
+                nextSection.style.opacity = "1"; // Fade in the section
+            }, 10);
+
+            // Scroll to the new section after it fades in
+            setTimeout(() => {
+                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500); // Delay scrolling until fade-in completes
+        }
+
+        // Function to check the selected answer in Test Your Knowledge
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="equation-answer"]:checked');
+            const result = document.getElementById("result");
+            const explanation = document.getElementById("explanation");
+            const checkButton = document.querySelector(".check-button");
+
+            if (selectedAnswer) {
+                checkButton.style.display = "none"; // Hide the check button after clicking
+
+                if (selectedAnswer.value === "option1") {
+                    result.textContent = "Correct!";
+                    result.style.color = "#28a745";
+                    explanation.textContent = "Exactly! The weight (w) in our neural network is playing the same role as the slope (m) in linear regression, and both equations have a bias term (b).";
+                } else if (selectedAnswer.value === "option2") {
+                    result.textContent = "Incorrect";
+                    result.style.color = "#dc3545";
+                    explanation.textContent = "Look closer! If you replace w with m, you'll see they're actually the same equation.";
+                } else if (selectedAnswer.value === "option3") {
+                    result.textContent = "Incorrect";
+                    result.style.color = "#dc3545";
+                    explanation.textContent = "They're actually identical - just using different letters for the same concepts.";
+                }
+
+                result.style.display = "block";
+                explanation.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
